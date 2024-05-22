@@ -1,2 +1,5 @@
 # TOP Etch-a-Sketch
- the TOP etch-a-sketch
+
+The TOP etch-a-sketch
+
+URL to the project guidelines can be found: https://www.theodinproject.com/lessons/foundations-etch-a-sketch
