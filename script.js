@@ -1,28 +1,44 @@
-/* const box1 = document.createElement(`div`);
-box1.className = `box1`;
-box1.style.height = `100px`;
-box1.style.width = `100px`;
-box1.style.color = `red`;
-container.appendChild(box1);
+let color = `black`;
 
-const box2 = document.createElement(`div`);
-box1.className = `box2`;
-box1.style.height = `100px`;
-box1.style.width = `100px`;
-box1.style.color = `blue`;
-container.appendChild(box2);
- */
+function populateBoard(size) {
+  let board = document.querySelector(`.container`);
+  let squares = board.querySelectorAll(`div`);
+  squares.forEach((div) => div.remove());
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-function createSquares(num) {
-  let container = document.querySelector(`.container`);
-  container.style.display = `flex`;
-
-  let amount = num * num;
+  let amount = size * size;
   for (let i = 0; i < amount; i++) {
-    let pixel = document.createElement(`div`);
-    pixel.style.flex = `1`;
-    container.appendChild(pixel);
+    let square = document.createElement(`div`);
+    square.addEventListener(`mouseover`, colorSquare);
+    square.style.backgroundColor = "white";
+    board.insertAdjacentElement(`beforeend`, square);
+  }
+}
+populateBoard(16);
+
+function changeSize(input) {
+  if (input >= 2 && input <= 100) {
+    populateBoard(input);
+  } else {
+    console.log("Too many squares!");
   }
 }
 
-pixels = createSquares(16);
+function colorSquare() {
+  if (color === `random`) {
+    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  } else {
+    this.style.backgroundColor = color;
+  }
+}
+
+function changeColor(choice) {
+  color = choice;
+}
+
+function resetBoard() {
+  let board = document.querySelector(`.container`);
+  let squares = board.querySelectorAll(`div`);
+  squares.forEach((div) => (div.style.backgroundColor = white));
+}
